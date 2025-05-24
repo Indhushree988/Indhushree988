@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+* {
+  margin: 5;
+  padding: 3;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: lightskyblue;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  animation: fadeIn 1.2s ease-in;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-container {
+  display: flex;
+  gap: 40px;
+}
+
+
+.card {
+  width: 280px;
+  height: 450px;
+  border-radius: 24px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #00f2fe, #4facfe);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: popUp 1s ease forwards;
+}
+
+
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+
+@keyframes popUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.front .logo {
+  font-size: 48px;
+  margin-top: 60px;
+}
+
+.front .company-name {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 30px;
+  text-transform: lowercase;
+}
+
+.back .greeting {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  text-transform: lowercase;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.info-box {
+  background: white;
+  color: grey;
+  border-radius: 20px;
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  animation: bounceIn 0.9s ease;
+}
+
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.info-box .name {
+  background: linear-gradient(90deg, #00f2fe, #4facfe);
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 14px 14px 0 0;
+}
+
+.info-box .position {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: grey;
+}
+
+.info-box .line {
+  height: 1px;
+  background: white;
+  margin: 10px 0;
+}
+
+.info-box .phone,
+.info-box .website,
+.info-box .email {
+  font-size: 14px;
+  padding: 8px 0;
+  border-top: 1px solid white;
+}
