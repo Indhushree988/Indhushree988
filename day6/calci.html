@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Basic Calculator</title>
+</head>
+<body>
+  <script>
+
+    let input1 = prompt("Enter the first number:");
+    let input2 = prompt("Enter the second number:");
+
+    alert("Type of input1: " + typeof input1);
+    alert("Type of input2: " + typeof input2);
+
+    let num1 = Number(input1);
+    let num2 = Number(input2);
+
+    let addition = num1 + num2;
+    let subtraction = num1 - num2;
+    let multiplication = num1 * num2;
+    let division = num2 !== 0 ? num1 / num2 : "Cannot divide by zero";
+
+    alert("Addition: " + addition);
+    alert("Subtraction: " + subtraction);
+    alert("Multiplication: " + multiplication);
+    alert("Division: " + division);
+  </script>
+</body>
+</html>
