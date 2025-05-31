@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz</title>
+  <style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  #quiz-container {
+    background-color: white;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 12px;
+  }
+
+  h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  input[type="radio"] {
+    margin-right: 10px;
+  }
+
+  label:hover {
+    background-color: #f0f0f0;
+  }
+
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+  .feedback {
+    margin-top: 15px;
+    font-size: 18px;
+  }
+</style>
+
+</head>
+<body>
+  <div id="quiz-container">
+    <h2 id="question">Question text</h2>
+    <form id="quiz-form">
+      <div id="options"></div>
+      <button type="submit">Submit</button>
+    </form>
+    <div id="feedback" class="feedback"></div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "Who founded the Seshadripuram Group of Institutions?",
+        options: ["Smt. Kamalamma and Smt. Seethamma.", "Smt. Anandamma and Smt. Seethamma.", "Smt. Anandamma and Smt. Gowramma.", "Smt. seethamma and Smt. Mangalamma."],
+        answer: "Smt. Anandamma and Smt. Seethamma."
+      },
+      {
+        question: "Seshadripuram college was established in the year?",
+        options: ["1928", "1940", "1930", "1932"],
+        answer: "1930"
+      },
+      {
+        question: "What is the overall seating capacity for various courses at Seshadripuram College?",
+        options: ["200", "Blue 240", "250", "upto 260"],
+        answer: "upto 260"
+      }
+    ];
+
+    let currentQuestion = 0;
+
+    const questionEl = document.getElementById('question');
+    const optionsEl = document.getElementById('options');
+    const formEl = document.getElementById('quiz-form');
+    const feedbackEl = document.getElementById('feedback');
+
+    function loadQuestion() {
+      const q = quizData[currentQuestion];
+      questionEl.textContent = q.question;
+      optionsEl.innerHTML = '';
+
+      q.options.forEach(option => {
+        const label = document.createElement('label');
+        label.innerHTML = `
+          <input type="radio" name="option" value="${option}"> ${option}
+        `;
+        optionsEl.appendChild(label);
+        optionsEl.appendChild(document.createElement('br'));
+      });
+
+      feedbackEl.textContent = '';
+    }
+
+    formEl.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const selected = document.querySelector('input[name="option"]:checked');
+      if (!selected) {
+        feedbackEl.textContent = "Please select an option.";
+        return;
+      }
+
+      const answer = selected.value;
+      const correct = quizData[currentQuestion].answer;
+
+      if (answer === correct) {
+        feedbackEl.textContent = "Correct!";
+        feedbackEl.style.color = "green";
+      } else {
+        feedbackEl.textContent = `Wrong! Correct answer is "${correct}".`;
+        feedbackEl.style.color = "red";
+      }
+
+   
+      setTimeout(() => {
+        currentQuestion++;
+        if (currentQuestion < quizData.length) {
+          loadQuestion();
+        } else {
+          document.getElementById('quiz-container').innerHTML = "<h2>Quiz Complete! Thanks for playing.</h2>";
+        }
+      }, 1500);
+    });
+
+    loadQuestion(); 
+  </script>
+</body>
+</html>
